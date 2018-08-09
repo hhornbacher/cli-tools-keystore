@@ -1,0 +1,31 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 2017
+    },
+    "env": {
+        "node": true,
+        "es6": true,
+        "mocha": true
+    },
+    "globals": {
+        "cli": true
+    },
+    "extends": "eslint:recommended",
+    "rules": {
+        "semi": [
+            "error",
+            "always"
+        ],
+        "comma-dangle": [
+            "error",
+            "never"
+        ],
+        "no-console": "off",
+        "no-unused-vars": [
+            "error",
+            {
+                "varsIgnorePattern": "should|expect"
+            }
+        ]
+    }
+}

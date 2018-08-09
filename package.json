@@ -1,0 +1,36 @@
+{
+  "name": "@clitools/keystore",
+  "version": "1.0.0",
+  "author": "Harry Hornbacher",
+  "description": "Plugin for access to system key management for secure storage of credentials",
+  "main": "./keystore.js",
+  "scripts": {
+    "test": "echo \"No tests\"",
+    "tdd": "echo \"No tests\"",
+    "lint": "eslint -c .eslintrc.json keystore.js",
+    "prepublishOnly": "npm run lint"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hhornbacher/cli-tools-keystore.git"
+  },
+  "homepage": "https://github.com/hhornbacher/cli-tools-keystore#readme",
+  "bugs": {
+    "url": "https://github.com/hhornbacher/cli-tools-keystore/issues"
+  },
+  "keywords": [
+    "node",
+    "js",
+    "cli",
+    "shell",
+    "scripting"
+  ],
+  "dependencies": {
+    "@clitools/base": "^2.0.0",
+    "keytar": "^4.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.2.0"
+  }
+}
