@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "author": "Harry Hornbacher",
   "description": "Plugin for access to system key management for secure storage of credentials",
-  "main": "./keystore.js",
+  "main": "./index.js",
   "scripts": {
     "test": "echo \"No tests\"",
     "tdd": "echo \"No tests\"",
