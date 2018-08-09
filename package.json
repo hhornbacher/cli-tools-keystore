@@ -1,6 +1,6 @@
 {
   "name": "@clitools/keystore",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Harry Hornbacher",
   "description": "Plugin for access to system key management for secure storage of credentials",
   "main": "./index.js",
@@ -24,7 +24,8 @@
     "js",
     "cli",
     "shell",
-    "scripting"
+    "scripting",
+    "@clitools/plugin"
   ],
   "dependencies": {
     "@clitools/base": "^2.0.0",
