@@ -4,6 +4,16 @@ Plugin for access to system key management for secure storage of credentials ([k
 
 ## Installation
 
-Just run `npm i --save @clitools/keystore`, no need to require anything: The plugin will be loaded automatically by the base module.
+Run `npm i --save @clitools/keystore`, then just require the module.
+Example:
+
+```javascript
+require('@clitools/base');
+require('@clitools/keystore');
+
+[...]
+// Now you can use cli.keystore
+cli.keystore.getCredentials('github');
+```
 
 ## [Changelog](CHANGELOG.md)

@@ -1,9 +1,13 @@
 # Changelog
 
+## 1.1.0
+
+* Update to `@clitools/base` v2.3.0
+
 ## 1.0.1
 
-* Add keyword to package.json for plugin identification
+* Add keyword to `package.json` for plugin identification
 
 ## 1.0.0
 
-* Moved to own repo from @clitools/base
+* Moved to own repo from `@clitools/base`
