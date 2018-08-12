@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.0
+
+* Store credentials in base64 encoded JSON string
+* Add management commands
+
 ## 1.1.0
 
 * Update to `@clitools/base` v2.3.0
