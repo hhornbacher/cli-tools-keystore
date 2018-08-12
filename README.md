@@ -2,6 +2,15 @@
 
 Plugin for access to system key management for secure storage of credentials ([keystore.js](lib/error-handler.js), _using:_ [keytar](https://github.com/atom/node-keytar))
 
+## System requirements
+
+Only tested with Linux (Ubuntu/Mint), Mac OS maybe also works, Windows is not supported.
+
+* `libsecret` is a dependency of [keytar](https://github.com/atom/node-keytar)
+  * Debian/Ubuntu: `sudo apt-get install libsecret-1-dev`
+  * Red Hat-based: `sudo yum install libsecret-devel`
+  * Arch Linux: `sudo pacman -S libsecret`
+
 ## Installation
 
 Run `npm i --save @clitools/keystore`, then just require the module.
