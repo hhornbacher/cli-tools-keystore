@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.0
+
+* Add import/export commands
+
 ## 2.0.0
 
 * Store credentials in base64 encoded JSON string

@@ -1,4 +1,7 @@
 const keytar = require('keytar');
+const { execFile: _execFile } = require('child_process');
+
+const execFile = cli.promises.promisify(_execFile);
 
 global.cli.keystore = {
     getCredentials: (service) => keytar.getPassword(cli.programName, service)
@@ -24,7 +27,7 @@ cli.program
         program
             .positional('action', {
                 describe: 'Action to perform on credentials',
-                choices: ['get', 'set', 'rm', 'ls', 'migrate']
+                choices: ['get', 'set', 'rm', 'ls', 'export', 'import']
             });
     }, async ({ action, params }) => {
         switch (action) {
@@ -57,6 +60,47 @@ cli.program
                 return;
             case 'ls':
                 cli.ui.print(await cli.keystore.findCredentials());
+                return;
+            case 'export':
+                {
+                    const { password, passwordRepeat } = await cli.ui.prompt
+                        .prompt([
+                            {
+                                type: 'password',
+                                name: 'password',
+                                message: 'Please enter enter a password to encrypt your export:'
+                            },
+                            {
+                                type: 'password',
+                                name: 'passwordRepeat',
+                                message: 'Please repeat the password for verification:'
+                            }
+                        ]);
+                    if (password !== passwordRepeat) throw new Error('Password mismatch');
+                    const credentials = await cli.keystore.findCredentials();
+                    await cli.fs.writeJson(`${cli.programName}-credentials.json`, credentials);
+                    await execFile('7z', ['a', '-bd', `-p${password}`, `${cli.programName}-credentials.7z`, `${cli.programName}-credentials.json`]);
+                    await cli.fs.unlink(`${cli.programName}-credentials.json`);
+                    cli.ui.print(`Created credentials export: ${cli.programName}-credentials.7z`);
+                }
+                return;
+            case 'import':
+                {
+                    const { password } = await cli.ui.prompt
+                        .prompt([
+                            {
+                                type: 'password',
+                                name: 'password',
+                                message: 'Please enter enter a password to decrypt your import:'
+                            }
+                        ]);
+                    const [stdout] = await execFile('7z', ['e', '-bd', `-p${password}`, `-so`, `${cli.programName}-credentials.7z`, `${cli.programName}-credentials.json`]);
+                    const credentials = JSON.parse(stdout);
+                    await Promise.all(
+                        credentials.map(cred => cli.keystore.setCredentials(cred.service, cred.credentials))
+                    );
+                    cli.ui.print(credentials);
+                }
                 return;
         }
     });
